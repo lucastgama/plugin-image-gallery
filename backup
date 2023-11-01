@@ -1,10 +1,3 @@
-<?php
-function slider_gallery_register_meta_boxes()
-{
-    add_action('add_meta_boxes', 'slider_gallery_metaboxes_images');
-}
-
-
 function slider_gallery_metaboxes_images()
 {
     add_meta_box(
@@ -35,7 +28,7 @@ function slider_gallery_images_display()
         <div class="image-carousel-wrapper">
             <div class="image-selected">
                 <a class='btn-remove-image' href="">X</a>
-                <img src="" alt="" style="">
+                <img src="" alt="">
             </div>
             <div class="custom-img-container">
                 <?php if ($you_have_img) : ?>
@@ -49,7 +42,7 @@ function slider_gallery_images_display()
     </div>
 
 
-    <!-- <input class="custom-img-id" name="custom-img-id" type="hidden" value="<?php echo esc_attr($your_img_id); ?>" /> -->
+    <input class="custom-img-id" name="custom-img-id" type="" value="<?php echo esc_attr($your_img_id); ?>" />
 
     <!-- Your add & remove image links -->
     <p class="hide-if-no-js">
@@ -62,9 +55,8 @@ function slider_gallery_images_display()
 
     <script>
         jQuery(function($) {
-            // Set all variables to be used in scope
             var frame,
-                metaBox = $('#container-meta-box-images.postbox'), // Your meta box id here
+                metaBox = $('#container-meta-box-images.postbox'),
                 addImgLink = metaBox.find('.upload-custom-img'),
                 delImgLink = metaBox.find('.delete-custom-img'),
                 imgContainer = metaBox.find('.custom-img-container'),
@@ -72,55 +64,38 @@ function slider_gallery_images_display()
                 imgSelected = metaBox.find('.image-selected'),
                 removeImg = metaBox.find('.btn-remove-image');
 
-            // ADD IMAGE LINK
             addImgLink.on('click', function(event) {
-
                 event.preventDefault();
 
-                // If the media frame already exists, reopen it.
                 if (frame) {
                     frame.open();
                     return;
                 }
 
-                // Create a new media frame
                 frame = wp.media({
-                    title: 'Select or Upload Media Of Your Chosen Persuasion',
+                    title: 'Seleciona as imagens para upload',
                     button: {
-                        text: 'Use this media'
+                        text: 'Use aqui'
                     },
                     multiple: true
                 });
                 frame.on('select', function() {
-                    // Get media attachment details from the frame state
                     var attachment = frame.state().get('selection').first().toJSON();
-
-                    // Send the attachment URL to our custom image input field.
                     imgContainer.append('<img src="' + attachment.url + '" alt="" style="width: 100px;object-fit: cover; height: 100px;"/>');
-
-                    // Send the attachment id to our hidden input
                     imgIdInput.val(attachment.id);
-
                     console.log(imgIdInput)
-                    // Unhide the remove image link
                     delImgLink.removeClass('hidden');
                 });
 
-                // Finally, open the modal on click
                 frame.open();
             });
 
 
-            // DELETE IMAGE LINK
             delImgLink.on('click', function(event) {
                 event.preventDefault();
-                // Clear out the preview image
                 imgContainer.html('');
-                // Un-hide the add image link
                 addImgLink.removeClass('hidden');
-                // Hide the delete image link
                 delImgLink.addClass('hidden');
-                // Delete the image id from the hidden nput
                 imgIdInput.val('');
 
 
@@ -129,7 +104,6 @@ function slider_gallery_images_display()
             removeImg.on('click', function(event) {
                 event.preventDefault();
                 $(this).closest('div').remove();
-
             })
 
         });

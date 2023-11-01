@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) {
 }
 
 include('src/includes/global/posttype.php');
-include('src/includes/admin/metaboxes.php');
+include('src/includes/admin/metaboxes/metabox-options.php');
 
 add_action('admin_init', 'slider_gallery_register_meta_boxes');
 
