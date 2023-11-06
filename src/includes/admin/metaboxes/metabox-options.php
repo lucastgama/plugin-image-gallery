@@ -2,12 +2,6 @@
 
 include(__DIR__ . '/../../../template/metaboxes/template-options.php');
 
-
-function slider_gallery_register_meta_boxes()
-{
-    add_action('add_meta_boxes', 'slider_gallery_metabox_options');
-}
-
 function slider_gallery_metabox_options()
 {
     add_meta_box(
@@ -19,6 +13,7 @@ function slider_gallery_metabox_options()
         'high'
     );
 }
+add_action('add_meta_boxes', 'slider_gallery_metabox_options');
 
 function slider_gallery_metabox_options_save($post_id)
 {
@@ -37,7 +32,7 @@ function slider_gallery_metabox_options_save($post_id)
     if (!current_user_can('edit_post', $post_id)) {
         return $post_id;
     }
-
+    
     // $slide_duration = sanitize_text_field($_POST['slide_duration']);
     $slide_options = [];
     $slide_options['slide_duration'] = $_POST['slide_duration'];

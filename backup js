@@ -1,0 +1,52 @@
+jQuery(function ($) {
+  var frame,
+    metaBox = $("#container-meta-box-images.postbox"),
+    addImgLink = metaBox.find(".btn-upload-custom-img"),
+    delImgLink = metaBox.find(".delete-custom-img"),
+    imgContainer = metaBox.find(".images-position"),
+    imgIdInput = metaBox.find(".custom-img-id"),
+    removeImg = metaBox.find(".btn-remove-image");
+
+  addImgLink.on("click", function (event) {
+    event.preventDefault();
+
+    if (frame) {
+      frame.open();
+      return;
+    }
+
+    frame = wp.media({
+      title: "Selecione a imagem",
+      button: {
+        text: "Selecionar",
+      },
+      multiple: true,
+    });
+    frame.on("select", function () {
+      var attachment = frame.state().get("selection").first().toJSON();
+      imgContainer.append(
+        '<div class="image-selected"> <a class="btn-remove-image" href=""></a><img src="' +
+          attachment.url +
+          '" alt=""></div>'
+      );
+      imgIdInput.val(attachment.id);
+      delImgLink.removeClass("hidden");
+    });
+
+    frame.open();
+  });
+
+  delImgLink.on("click", function (event) {
+    event.preventDefault();
+    imgContainer.html("");
+    addImgLink.removeClass("hidden");
+    delImgLink.addClass("hidden");
+    imgIdInput.val("");
+  });
+
+  removeImg.on("click", function (event) {
+    event.preventDefault();
+    // $(this).closest("div").remove();
+    console.log(this);
+  });
+});

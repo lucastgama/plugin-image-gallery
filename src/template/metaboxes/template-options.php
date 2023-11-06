@@ -9,30 +9,37 @@ function slider_gallery_options_display($post)
     // Use um nonce para verificar
     wp_nonce_field('save_slide_options', 'metabox_nonce');
 ?>
-    <div>
+    <div class="container_options_carousel">
         <div>
-            <label for="slide_duration">Duração do slide: </label>
-            <input type="text" id="slide_duration" name="slide_duration" value="<?php echo esc_attr($slide_options_array['slide_duration']); ?>">
+            <div class="container_option">
+                <label for="slide_duration">Duração do slide: </label>
+                <input type="text" id="slide_duration" name="slide_duration" value="<?php echo esc_attr($slide_options_array['slide_duration']); ?>">
+                <span>segundos</span>
+            </div>
+            <div class="container_option">
+                <label for="slide_transition">Transição da imagem: </label>
+                <input type="text" id="slide_transition" name="slide_transition" value="<?php echo esc_attr($slide_options_array['slide_transition']); ?>">
+                <span>segundos</span>
+            </div>
+            <div class="container_option">
+                <label for="slide_loop">Loop no slide: </label>
+                <input type="checkbox" id="slide_loop" name="slide_loop" value="1" <?php checked(esc_attr($slide_options_array['slide_loop']), 1); ?>>
+            </div>
         </div>
+
         <div>
-            <label for="slide_transition">Transição da imagem: </label>
-            <input type="text" id="slide_transition" name="slide_transition" value="<?php echo esc_attr($slide_options_array['slide_transition']); ?>">
-        </div>
-        <div>
-            <label for="slide_loop">Loop no slide: </label>
-            <input type="text" id="slide_loop" name="slide_loop" value="<?php echo esc_attr($slide_options_array['slide_loop']); ?>">
-        </div>
-        <div>
-            <label for="slide_stop_on_hover">Parar slide quando mouse estiver em cima: </label>
-            <input type="text" id="slide_stop_on_hover" name="slide_stop_on_hover" value="<?php echo esc_attr($slide_options_array['slide_stop_on_hover']); ?>">
-        </div>
-        <div>
-            <label for="slide_navigation">Setas de navegação: </label>
-            <input type="text" id="slide_navigation" name="slide_navigation" value="<?php echo esc_attr($slide_options_array['slide_navigation']); ?>">
-        </div>
-        <div>
-            <label for="slide_show_pagination">Mostrar paginação: </label>
-            <input type="text" id="slide_show_pagination" name="slide_show_pagination" value="<?php echo esc_attr($slide_options_array['slide_show_pagination']); ?>">
+            <div class="container_option">
+                <label for="slide_stop_on_hover">Parar slide quando mouse estiver em cima: </label>
+                <input class="teste" type="checkbox" id="slide_stop_on_hover" name="slide_stop_on_hover" value="1" <?php checked(esc_attr($slide_options_array['slide_stop_on_hover']), 1); ?>>
+            </div>
+            <div class="container_option">
+                <label for="slide_navigation">Setas de navegação: </label>
+                <input type="checkbox" id="slide_navigation" name="slide_navigation" value="1" <?php checked(esc_attr($slide_options_array['slide_navigation']), 1); ?>>
+            </div>
+            <div class="container_option">
+                <label for="slide_show_pagination">Mostrar paginação: </label>
+                <input type="checkbox" id="slide_show_pagination" name="slide_show_pagination" value="1" <?php checked(esc_attr($slide_options_array['slide_show_pagination']), 1); ?>>
+            </div>
         </div>
     </div>
 <?php
