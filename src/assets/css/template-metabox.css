@@ -1,22 +1,22 @@
-.container_options_carousel {
+.container-options-carousel {
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
-.container_option {
+.container-option {
   width: 100%;
   display: flex;
   align-items: center;
   padding: 5px 0;
 }
-.container_option label {
+.container-option label {
   width: 150px;
   margin-right: 10px;
 }
-.container_option input[type="text"] {
+.container-option input[type="text"] {
   width: 35px;
 }
-.container_option span {
+.container-option span {
   font-size: 12px;
   color: gray;
 }
